@@ -1,0 +1,32 @@
+{
+  "name": "Geschenkfinderei",
+  "domain": "https://geschenkfinderei.de",
+  "claim": "Durchdachte Geschenkideen, ehrlich ausgesucht.",
+  "description": "Geschenkfinderei findet das passende Geschenk: kuratierte Geschenkideen nach Anlass, Person und Budget. Ehrlich ausgesucht, klar erklärt.",
+  "email": "wir@krawallkrone.de",
+  "impressum": {
+    "name": "Julius Streitz",
+    "strasse": "Bernhard-Göring-Str. 34",
+    "ort": "04107 Leipzig"
+  },
+  "anlassLabels": {
+    "hochzeit": "Hochzeit",
+    "einzug": "Einzug",
+    "geburtstag": "Geburtstag",
+    "kleinigkeit": "Kleine Aufmerksamkeit"
+  },
+  "fuerLabels": {
+    "paare": "Paare",
+    "maenner": "Männer",
+    "frauen": "Frauen",
+    "alle": "Alle"
+  },
+  "budgetLabels": {
+    "15": "unter 15 €",
+    "30": "unter 30 €",
+    "50": "unter 50 €",
+    "100": "unter 100 €"
+  },
+  "disclosure": "Werbung · Dieser Beitrag enthält Affiliate-Links. Kaufst du über einen dieser Links, erhalten wir eine Provision. Für dich ändert sich am Preis nichts.",
+  "footerNote": "Unsere Empfehlungen sind redaktionell ausgewählt. Links zu Shops können Affiliate-Links sein (Werbung)."
+}

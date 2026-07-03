@@ -1,0 +1,63 @@
+{
+  "slug": "kleine-geschenke-unter-15-euro",
+  "title": "Kleine Geschenke unter 15 Euro: 8 Aufmerksamkeiten mit großer Wirkung",
+  "teaser": "Für Mitbringsel, Dankeschöns und Wichtelrunden: acht kleine Geschenke, die nicht nach Verlegenheit aussehen.",
+  "date": "2026-07-03",
+  "anlass": "kleinigkeit",
+  "fuer": "alle",
+  "budget": "15",
+  "intro": "Kleine Geschenke sind die schwierigsten: das Budget ist begrenzt, die Erwartung trotzdem da. Der Trick liegt in Dingen, die hochwertiger wirken, als sie kosten, oder die ein echtes Alltagsproblem lösen. Acht Ideen, die beides schaffen.",
+  "items": [
+    {
+      "name": "Schöne Schokolade in Geschenkverpackung",
+      "desc": "Nicht die Supermarkt-Tafel, sondern eine mit gutem Design und ungewöhnlicher Sorte. Wirkt durchdacht, kostet unter zehn Euro.",
+      "preis": "ca. 6–12 €",
+      "url": "https://www.amazon.de/s?k=schokolade+geschenk+edel"
+    },
+    {
+      "name": "Samenbomben oder Anzuchtset",
+      "desc": "Ein Geschenk, das wächst. Funktioniert für Balkongärtner wie für Menschen, die es werden wollen, und bleibt wochenlang präsent.",
+      "preis": "ca. 8–14 €",
+      "url": "https://www.amazon.de/s?k=anzuchtset+kr%C3%A4uter+geschenk"
+    },
+    {
+      "name": "Handcreme in guter Qualität",
+      "desc": "Der Klassiker unter den Aufmerksamkeiten, aber in der hochwertigen Variante ein Unterschied, den man sofort merkt.",
+      "preis": "ca. 8–15 €",
+      "url": "https://www.amazon.de/s?k=handcreme+geschenkset"
+    },
+    {
+      "name": "Lustige Socken mit Motiv",
+      "desc": "Vom Klischee zum Kult: Motivsocken sind das kleine Geschenk mit der verlässlichsten Lachgarantie, wenn das Motiv zur Person passt.",
+      "preis": "ca. 8–14 €",
+      "url": "https://www.amazon.de/s?k=lustige+socken+geschenk"
+    },
+    {
+      "name": "Mini-Puzzle oder Geduldsspiel",
+      "desc": "Für den Schreibtisch oder den Feierabend: ein kleines Knobelspiel beschäftigt länger, als der Preis vermuten lässt.",
+      "preis": "ca. 8–15 €",
+      "url": "https://www.amazon.de/s?k=geduldsspiel+metall"
+    },
+    {
+      "name": "Tee-Probierset",
+      "desc": "Mehrere Sorten in kleiner Menge: die richtige Größe zum Verschenken, weil niemand 250 Gramm einer unbekannten Sorte braucht.",
+      "preis": "ca. 10–15 €",
+      "url": "https://www.amazon.de/s?k=tee+probierset+geschenk"
+    },
+    {
+      "name": "Schlüsselanhänger mit Gravur",
+      "desc": "Personalisierung schlägt Preis: ein Anhänger mit Initialen oder Datum wirkt wie ein Vielfaches seiner Kosten.",
+      "preis": "ca. 10–15 €",
+      "url": "https://www.amazon.de/s?k=schl%C3%BCsselanh%C3%A4nger+gravur"
+    },
+    {
+      "name": "Notizbuch mit besonderem Einband",
+      "desc": "Ein schönes Notizbuch kauft man sich selten selbst, freut sich aber immer darüber. Mit Kork- oder Leineneinband weit weg vom Werbegeschenk-Look.",
+      "preis": "ca. 10–15 €",
+      "url": "https://www.amazon.de/s?k=notizbuch+kork+a5"
+    }
+  ],
+  "pin": {
+    "keywords": ["kleine geschenke unter 15 euro", "mitbringsel ideen", "wichtelgeschenk ideen"]
+  }
+}
