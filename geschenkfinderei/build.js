@@ -41,6 +41,28 @@ ${ogImage ? `<meta property="og:image" content="${site.domain}${ogImage}">` : ""
 <link rel="alternate" type="application/rss+xml" title="${esc(site.name)}" href="${site.domain}/feed.xml">
 <link rel="stylesheet" href="/style.css">
 ${jsonld ? `<script type="application/ld+json">${JSON.stringify(jsonld)}</script>` : ""}
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    ad_storage:'denied', ad_user_data:'denied', ad_personalization:'denied',
+    analytics_storage:'denied', functionality_storage:'denied',
+    personalization_storage:'denied', security_storage:'granted', wait_for_update:500
+  });
+  try {
+    if (localStorage.getItem('finderei_consent') === 'accepted') {
+      gtag('consent', 'update', {
+        ad_storage:'granted', ad_user_data:'granted', ad_personalization:'granted',
+        analytics_storage:'granted', functionality_storage:'granted', personalization_storage:'granted'
+      });
+    }
+  } catch(e){}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X457K426P6"></script>
+<script>
+  gtag('js', new Date());
+  gtag('config', 'G-X457K426P6');
+</script>
 </head>
 <body>
 <header class="site"><div class="wrap">
@@ -60,38 +82,48 @@ ${body}
 <footer class="site"><div class="wrap">
   <a href="/impressum">Impressum</a>
   <a href="/datenschutz">Datenschutz</a>
-  <a href="#" onclick="localStorage.removeItem('finderei_consent');location.reload();return false;">Cookie-Einstellungen</a>
+  <a href="#" onclick="try{localStorage.removeItem('finderei_consent');}catch(e){}location.reload();return false;">Cookie-Einstellungen</a>
   <p>${esc(site.footerNote)}</p>
   <p>© ${new Date().getFullYear()} ${esc(site.name)}</p>
 </div></footer>
-<div id="consent" class="consent" hidden>
-  <p>Dürfen wir mit Google Analytics anonym messen, welche Geschenkführer dir helfen? Erst nach deinem Okay, Details in der <a href="/datenschutz">Datenschutzerklärung</a>.</p>
-  <div class="consent-btns"><button id="c-no" type="button">Nein danke</button><button id="c-yes" type="button" class="primary">Einverstanden</button></div>
+<div id="consent" class="consent" style="display:none">
+  <div class="consent-inner">
+    <div class="consent-text">
+      <strong>Wir respektieren deine Privatsphäre</strong>
+      <p>Wir verwenden Cookies und Google Analytics, um zu verstehen, welche Geschenkführer wirklich helfen. Notwendige Cookies sind für den Betrieb der Seite nötig, Statistik-Cookies nur mit deiner Einwilligung. Mehr in der <a href="/datenschutz">Datenschutzerklärung</a>.</p>
+    </div>
+    <div class="consent-btns">
+      <button id="c-necessary" type="button">Nur notwendige</button>
+      <button id="c-accept" type="button" class="primary">Alle akzeptieren</button>
+    </div>
+  </div>
 </div>
 <script>
 (function(){
   var KEY='finderei_consent';
-  function loadGA(){
-    if(window.gtag)return;
-    var s=document.createElement('script');s.async=true;
-    s.src='https://www.googletagmanager.com/gtag/js?id=G-X457K426P6';
-    document.head.appendChild(s);
-    window.dataLayer=window.dataLayer||[];
-    window.gtag=function(){dataLayer.push(arguments);};
-    gtag('js',new Date());
-    gtag('config','G-X457K426P6');
-  }
   var box=document.getElementById('consent');
-  var c=localStorage.getItem(KEY);
-  if(c==='yes'){loadGA();}
-  else if(c!=='no'){box.hidden=false;}
-  document.getElementById('c-yes').addEventListener('click',function(){localStorage.setItem(KEY,'yes');box.hidden=true;loadGA();});
-  document.getElementById('c-no').addEventListener('click',function(){localStorage.setItem(KEY,'no');box.hidden=true;});
+  function hide(){ box.style.display='none'; }
+  function show(){ box.style.display='block'; }
+  function grant(){
+    if(window.gtag){
+      gtag('consent','update',{
+        ad_storage:'granted', ad_user_data:'granted', ad_personalization:'granted',
+        analytics_storage:'granted', functionality_storage:'granted', personalization_storage:'granted'
+      });
+      gtag('event','page_view');
+    }
+  }
+  var c=null; try{ c=localStorage.getItem(KEY); }catch(e){}
+  if(c!=='accepted' && c!=='necessary'){ show(); }
+  var acc=document.getElementById('c-accept');
+  var nec=document.getElementById('c-necessary');
+  if(acc) acc.addEventListener('click',function(){ try{localStorage.setItem(KEY,'accepted');}catch(e){} grant(); hide(); });
+  if(nec) nec.addEventListener('click',function(){ try{localStorage.setItem(KEY,'necessary');}catch(e){} hide(); });
   document.addEventListener('click',function(e){
     var a=e.target.closest&&e.target.closest('a[rel~="sponsored"]');
     if(a&&window.gtag){
       var item=a.closest('.item');
-      var name=item&&item.querySelector('h3')?item.querySelector('h3').textContent.replace(/^\\d+\\./,'').trim():'';
+      var name=item&&item.querySelector('h3')?item.querySelector('h3').textContent.replace(/^\\d+\\.\\s*/,'').trim():'';
       gtag('event','affiliate_click',{link_url:a.href,page_path:location.pathname,item_name:name});
     }
   });
@@ -332,8 +364,9 @@ write("datenschutz.html", layout({
   <h2>Cookies, lokale Speicherung und Webanalyse</h2>
   <p>Diese Website speichert deine Entscheidung zur Webanalyse (Einwilligung oder Ablehnung) im lokalen Speicher deines Browsers (localStorage). Diese Speicherung ist technisch notwendig, um deine Wahl zu respektieren, und enthält keine personenbezogenen Daten.</p>
   <h2>Google Analytics 4 (nur mit Einwilligung)</h2>
-  <p>Sofern du über das Einwilligungs-Banner zustimmst, nutzen wir Google Analytics 4, einen Webanalysedienst der Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland ("Google"). Google Analytics verwendet Cookies und ähnliche Technologien, um die Nutzung der Website zu analysieren (z. B. aufgerufene Seiten, Verweildauer, Klicks auf Affiliate-Links). Die IP-Adresse wird von Google Analytics 4 standardmäßig nicht gespeichert. Es kann zu einer Übermittlung von Daten in die USA kommen; diese erfolgt auf Grundlage des EU-US Data Privacy Framework bzw. der Standardvertragsklauseln.</p>
-  <p>Rechtsgrundlage der Verarbeitung ist deine Einwilligung (Art. 6 Abs. 1 lit. a DSGVO). Ohne Einwilligung wird Google Analytics nicht geladen. Du kannst deine Einwilligung jederzeit widerrufen oder ändern, indem du im Fußbereich der Website auf "Cookie-Einstellungen" klickst; das Banner erscheint dann erneut.</p>
+  <p>Sofern du über das Einwilligungs-Banner zustimmst, nutzen wir Google Analytics 4, einen Webanalysedienst der Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland ("Google"). Google Analytics verwendet Cookies und ähnliche Technologien, um die Nutzung der Website zu analysieren (z. B. aufgerufene Seiten, Verweildauer, Klicks auf Affiliate-Links). Die IP-Adresse wird von Google Analytics 4 standardmäßig gekürzt und nicht dauerhaft gespeichert. Es kann zu einer Übermittlung von Daten in die USA kommen; diese erfolgt auf Grundlage des EU-US Data Privacy Framework bzw. der Standardvertragsklauseln.</p>
+  <p>Wir setzen den Google Consent Mode v2 ein. Das bedeutet: Der Google-Tag wird zwar geladen, setzt aber vor deiner Einwilligung keine Analyse- oder Werbe-Cookies und überträgt keine für die Analyse nutzbaren personenbezogenen Daten (Standardzustand "denied"). Erst wenn du auf "Alle akzeptieren" klickst, werden Statistik-Cookies gesetzt und die Analyse aktiviert. Wählst du "Nur notwendige", bleibt die Analyse deaktiviert.</p>
+  <p>Rechtsgrundlage der Verarbeitung ist deine Einwilligung (Art. 6 Abs. 1 lit. a DSGVO). Du kannst deine Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen oder ändern, indem du im Fußbereich der Website auf "Cookie-Einstellungen" klickst; das Banner erscheint dann erneut.</p>
   <h2>Affiliate-Links</h2>
   <p>Diese Website enthält Links zu externen Shops (z. B. Amazon). Erst mit dem Klick auf einen solchen Link verlässt du diese Website; ab dann gelten die Datenschutzbestimmungen des jeweiligen Anbieters.</p>
   <h2>Kontaktaufnahme</h2>
