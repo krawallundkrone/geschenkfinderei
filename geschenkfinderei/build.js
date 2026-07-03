@@ -36,6 +36,7 @@ function layout({ title, desc, canonical, body, jsonld, ogImage }) {
 <meta property="og:url" content="${site.domain}${canonical}">
 <meta property="og:site_name" content="${esc(site.name)}">
 ${ogImage ? `<meta property="og:image" content="${site.domain}${ogImage}">` : ""}
+<meta name="p:domain_verify" content="c2d1e9c215f2524de7d57e93ce896bf7"/>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="alternate" type="application/rss+xml" title="${esc(site.name)}" href="${site.domain}/feed.xml">
 <link rel="stylesheet" href="/style.css">
