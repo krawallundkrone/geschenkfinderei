@@ -46,8 +46,11 @@ ${jsonld ? `<script type="application/ld+json">${JSON.stringify(jsonld)}</script
 <header class="site"><div class="wrap">
   <a class="logo" href="/">Geschenk<span>finderei</span></a>
   <nav class="main">
-    <a href="/anlass/hochzeit">Hochzeit</a>
+    <a href="/geschenkfuehrer">Geschenkführer</a>
     <a href="/anlass/geburtstag">Geburtstag</a>
+    <a href="/anlass/hochzeit">Hochzeit</a>
+    <a href="/fuer/frauen">Für Frauen</a>
+    <a href="/fuer/maenner">Für Männer</a>
     <a href="/budget/15">Unter 15 €</a>
   </nav>
 </div></header>
@@ -57,9 +60,43 @@ ${body}
 <footer class="site"><div class="wrap">
   <a href="/impressum">Impressum</a>
   <a href="/datenschutz">Datenschutz</a>
+  <a href="#" onclick="localStorage.removeItem('finderei_consent');location.reload();return false;">Cookie-Einstellungen</a>
   <p>${esc(site.footerNote)}</p>
   <p>© ${new Date().getFullYear()} ${esc(site.name)}</p>
 </div></footer>
+<div id="consent" class="consent" hidden>
+  <p>Dürfen wir mit Google Analytics anonym messen, welche Geschenkführer dir helfen? Erst nach deinem Okay, Details in der <a href="/datenschutz">Datenschutzerklärung</a>.</p>
+  <div class="consent-btns"><button id="c-no" type="button">Nein danke</button><button id="c-yes" type="button" class="primary">Einverstanden</button></div>
+</div>
+<script>
+(function(){
+  var KEY='finderei_consent';
+  function loadGA(){
+    if(window.gtag)return;
+    var s=document.createElement('script');s.async=true;
+    s.src='https://www.googletagmanager.com/gtag/js?id=G-X457K426P6';
+    document.head.appendChild(s);
+    window.dataLayer=window.dataLayer||[];
+    window.gtag=function(){dataLayer.push(arguments);};
+    gtag('js',new Date());
+    gtag('config','G-X457K426P6');
+  }
+  var box=document.getElementById('consent');
+  var c=localStorage.getItem(KEY);
+  if(c==='yes'){loadGA();}
+  else if(c!=='no'){box.hidden=false;}
+  document.getElementById('c-yes').addEventListener('click',function(){localStorage.setItem(KEY,'yes');box.hidden=true;loadGA();});
+  document.getElementById('c-no').addEventListener('click',function(){localStorage.setItem(KEY,'no');box.hidden=true;});
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('a[rel~="sponsored"]');
+    if(a&&window.gtag){
+      var item=a.closest('.item');
+      var name=item&&item.querySelector('h3')?item.querySelector('h3').textContent.replace(/^\\d+\\./,'').trim():'';
+      gtag('event','affiliate_click',{link_url:a.href,page_path:location.pathname,item_name:name});
+    }
+  });
+})();
+</script>
 </body>
 </html>`;
 }
@@ -81,10 +118,29 @@ function chips() {
   return `<div class="chips">${c.join("")}</div>`;
 }
 
+function chipsFuer() {
+  const c = Object.entries(site.fuerLabels).map(([k, v]) => `<a href="/fuer/${k}">Geschenke für ${esc(v)}</a>`);
+  return `<div class="chips">${c.join("")}</div>`;
+}
+
+function chipsBudget() {
+  const c = Object.entries(site.budgetLabels).map(([k, v]) => `<a href="/budget/${k}">Geschenke ${esc(v)}</a>`);
+  return `<div class="chips">${c.join("")}</div>`;
+}
+
+function anlassTile(key) {
+  const a = artikel.find(x => x.anlass === key && x.image);
+  const label = site.anlassLabels[key];
+  return `<a class="tile" href="/anlass/${key}">
+    ${a ? `<img src="${a.image}" alt="${esc(label)}" loading="lazy">` : ""}
+    <span>${esc(label)}</span>
+  </a>`;
+}
+
 /* Startseite */
 write("index.html", layout({
-  title: `${site.name} – ${site.claim}`,
-  desc: site.description,
+  title: `Geschenkinspiration: Geschenkideen nach Anlass, Person und Budget | ${site.name}`,
+  desc: "Geschenkinspiration, die wirklich hilft: kuratierte Geschenkideen nach Anlass, Person und Budget. Ehrlich ausgesucht, klar begründet, jede Woche neu.",
   canonical: "/",
   jsonld: {
     "@context": "https://schema.org",
@@ -107,11 +163,53 @@ write("index.html", layout({
       }
     ]
   },
-  body: `<div class="hero">
-    <h1>Das passende Geschenk, ohne stundenlanges Suchen.</h1>
-    <p class="claim">${esc(site.description)}</p>
-    ${chips()}
-  </div>
+  ogImage: "/hero.jpg",
+  body: `<section class="hero-banner">
+    <img src="/hero.jpg" alt="Liebevoll verpackte Geschenke in Creme und Terracotta" fetchpriority="high">
+    <div class="hero-card">
+      <h1>Geschenkinspiration, die wirklich hilft</h1>
+      <p>Kuratierte Geschenkideen nach Anlass, Person und Budget. Ehrlich ausgesucht, klar begründet, jede Woche neu.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Geschenke nach Anlass</h2>
+    <div class="tiles">${Object.keys(site.anlassLabels).map(anlassTile).join("\n")}</div>
+  </section>
+
+  <section>
+    <h2>Neue Geschenkführer</h2>
+    <div class="grid">${artikel.map(card).join("\n")}</div>
+    <p class="more-link"><a href="/geschenkfuehrer">Alle Geschenkführer ansehen →</a></p>
+  </section>
+
+  <section>
+    <h2>Für wen suchst du?</h2>
+    ${chipsFuer()}
+    <h2>Wie viel möchtest du ausgeben?</h2>
+    ${chipsBudget()}
+  </section>
+
+  <section class="seo-block">
+    <h2>Geschenkinspiration ohne stundenlanges Suchen</h2>
+    <p>Ein gutes Geschenk beantwortet eine einfache Frage: Woran hat diese Person Freude, ohne dass sie es sich selbst kaufen würde? Genau dafür gibt es die Geschenkfinderei. Statt endloser Produktlisten bekommst du hier kuratierte Geschenkführer mit jeweils acht durchdachten Ideen, jede mit einer ehrlichen Begründung, für wen sie passt und worauf du beim Kauf achten solltest.</p>
+    <h3>Geschenkideen für jeden Anlass</h3>
+    <p>Ob <a href="/anlass/geburtstag">Geburtstagsgeschenke</a> für Menschen, die scheinbar schon alles haben, <a href="/anlass/hochzeit">Hochzeitsgeschenke</a>, die nach der Feier wirklich benutzt werden, oder <a href="/anlass/einzug">Geschenke zum Einzug</a>, die besser sind als Brot und Salz: Jeder Anlass hat seine eigene Logik, und unsere Geschenkführer nehmen sie ernst.</p>
+    <h3>Vom kleinen Mitbringsel bis zum besonderen Stück</h3>
+    <p>Gute Geschenke sind keine Preisfrage. Unsere Ideen <a href="/budget/15">unter 15 Euro</a> beweisen, dass eine durchdachte Kleinigkeit mehr Wirkung hat als ein teurer Verlegenheitskauf. Und wenn es etwas Besonderes sein darf, findest du Vorschläge <a href="/budget/50">bis 50 Euro</a>, die sich nach deutlich mehr anfühlen.</p>
+    <h3>Ehrlich kuratiert statt endlos gelistet</h3>
+    <p>Wir verlinken Produkte über Affiliate-Links, transparent als Werbung gekennzeichnet. Ausgewählt wird trotzdem redaktionell: Jede Idee steht im Geschenkführer, weil sie gut ist, nicht weil sie die höchste Provision bringt. Am Preis ändert sich für dich dabei nichts.</p>
+  </section>`
+}));
+
+/* Geschenkführer-Übersicht */
+write("geschenkfuehrer.html", layout({
+  title: `Alle Geschenkführer | ${site.name}`,
+  desc: "Alle Geschenkführer der Geschenkfinderei im Überblick: kuratierte Geschenkideen nach Anlass, Person und Budget, jede Woche neu.",
+  canonical: "/geschenkfuehrer",
+  body: `<h1>Alle Geschenkführer</h1>
+  <p class="teaser">Jeder Führer bündelt acht durchdachte Geschenkideen zu einem Anlass oder einer Person, mit ehrlicher Begründung statt Verkaufsjargon.</p>
+  ${chips()}
   <div class="grid">${artikel.map(card).join("\n")}</div>`
 }));
 
@@ -231,8 +329,11 @@ write("datenschutz.html", layout({
   <p>${esc(imp.name)}, ${esc(imp.strasse)}, ${esc(imp.ort)}, E-Mail: ${esc(site.email)}</p>
   <h2>Hosting</h2>
   <p>Diese Website wird bei Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, USA gehostet. Beim Aufruf der Website verarbeitet Vercel technisch notwendige Daten (insbesondere IP-Adresse, Datum und Uhrzeit des Zugriffs, aufgerufene Seite, Browser-Informationen) in Server-Logfiles. Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der sicheren und zuverlässigen Bereitstellung der Website). Die Übermittlung in die USA erfolgt auf Grundlage der Standardvertragsklauseln der EU-Kommission bzw. des EU-US Data Privacy Framework.</p>
-  <h2>Cookies und Tracking</h2>
-  <p>Diese Website setzt keine Cookies und verwendet keine Analyse- oder Tracking-Dienste.</p>
+  <h2>Cookies, lokale Speicherung und Webanalyse</h2>
+  <p>Diese Website speichert deine Entscheidung zur Webanalyse (Einwilligung oder Ablehnung) im lokalen Speicher deines Browsers (localStorage). Diese Speicherung ist technisch notwendig, um deine Wahl zu respektieren, und enthält keine personenbezogenen Daten.</p>
+  <h2>Google Analytics 4 (nur mit Einwilligung)</h2>
+  <p>Sofern du über das Einwilligungs-Banner zustimmst, nutzen wir Google Analytics 4, einen Webanalysedienst der Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland ("Google"). Google Analytics verwendet Cookies und ähnliche Technologien, um die Nutzung der Website zu analysieren (z. B. aufgerufene Seiten, Verweildauer, Klicks auf Affiliate-Links). Die IP-Adresse wird von Google Analytics 4 standardmäßig nicht gespeichert. Es kann zu einer Übermittlung von Daten in die USA kommen; diese erfolgt auf Grundlage des EU-US Data Privacy Framework bzw. der Standardvertragsklauseln.</p>
+  <p>Rechtsgrundlage der Verarbeitung ist deine Einwilligung (Art. 6 Abs. 1 lit. a DSGVO). Ohne Einwilligung wird Google Analytics nicht geladen. Du kannst deine Einwilligung jederzeit widerrufen oder ändern, indem du im Fußbereich der Website auf "Cookie-Einstellungen" klickst; das Banner erscheint dann erneut.</p>
   <h2>Affiliate-Links</h2>
   <p>Diese Website enthält Links zu externen Shops (z. B. Amazon). Erst mit dem Klick auf einen solchen Link verlässt du diese Website; ab dann gelten die Datenschutzbestimmungen des jeweiligen Anbieters.</p>
   <h2>Kontaktaufnahme</h2>
@@ -244,7 +345,7 @@ write("datenschutz.html", layout({
 }));
 
 /* robots.txt, sitemap.xml, feed.xml */
-const urls = ["/", ...artikel.map(a => `/geschenke/${a.slug}`),
+const urls = ["/", "/geschenkfuehrer", ...artikel.map(a => `/geschenke/${a.slug}`),
   ...Object.keys(site.anlassLabels).map(k => `/anlass/${k}`),
   ...Object.keys(site.fuerLabels).map(k => `/fuer/${k}`),
   ...Object.keys(site.budgetLabels).map(k => `/budget/${k}`),
