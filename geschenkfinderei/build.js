@@ -21,7 +21,7 @@ function write(rel, html) {
   fs.writeFileSync(file, html);
 }
 
-function layout({ title, desc, canonical, body, jsonld }) {
+function layout({ title, desc, canonical, body, jsonld, ogImage }) {
   return `<!doctype html>
 <html lang="de">
 <head>
@@ -35,6 +35,7 @@ function layout({ title, desc, canonical, body, jsonld }) {
 <meta property="og:type" content="website">
 <meta property="og:url" content="${site.domain}${canonical}">
 <meta property="og:site_name" content="${esc(site.name)}">
+${ogImage ? `<meta property="og:image" content="${site.domain}${ogImage}">` : ""}
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="alternate" type="application/rss+xml" title="${esc(site.name)}" href="${site.domain}/feed.xml">
 <link rel="stylesheet" href="/style.css">
@@ -65,6 +66,7 @@ ${body}
 function card(a) {
   const tag = site.anlassLabels[a.anlass] || a.anlass;
   return `<a class="card" href="/geschenke/${a.slug}">
+    ${a.image ? `<img src="${a.image}" alt="${esc(a.image_alt || a.title)}" loading="lazy">` : ""}
     <span class="tag">${esc(tag)}</span>
     <h3>${esc(a.title)}</h3>
     <p>${esc(a.teaser)}</p>
@@ -83,6 +85,27 @@ write("index.html", layout({
   title: `${site.name} – ${site.claim}`,
   desc: site.description,
   canonical: "/",
+  jsonld: {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": `${site.domain}/#website`,
+        "name": site.name,
+        "url": site.domain,
+        "description": site.description,
+        "inLanguage": "de-DE",
+        "publisher": { "@id": `${site.domain}/#organization` }
+      },
+      {
+        "@type": "Organization",
+        "@id": `${site.domain}/#organization`,
+        "name": site.name,
+        "url": site.domain,
+        "logo": { "@type": "ImageObject", "url": `${site.domain}/favicon.svg` }
+      }
+    ]
+  },
   body: `<div class="hero">
     <h1>Das passende Geschenk, ohne stundenlanges Suchen.</h1>
     <p class="claim">${esc(site.description)}</p>
@@ -102,14 +125,43 @@ for (const a of artikel) {
     <a class="btn" href="${esc(it.url)}" rel="sponsored nofollow noopener" target="_blank">Bei Amazon ansehen <small>*</small></a>
   </div>`).join("\n");
 
+  const pageUrl = `${site.domain}/geschenke/${a.slug}`;
   const jsonld = {
     "@context": "https://schema.org",
-    "@type": "ItemList",
-    "name": a.title,
-    "numberOfItems": a.items.length,
-    "itemListElement": a.items.map((it, i) => ({
-      "@type": "ListItem", "position": i + 1, "name": it.name
-    }))
+    "@graph": [
+      {
+        "@type": "Article",
+        "@id": `${pageUrl}#article`,
+        "headline": a.title,
+        "description": a.teaser,
+        "image": a.image ? [`${site.domain}${a.image}`] : undefined,
+        "datePublished": a.date,
+        "dateModified": a.date,
+        "inLanguage": "de-DE",
+        "mainEntityOfPage": pageUrl,
+        "author": { "@type": "Organization", "name": site.name, "url": site.domain },
+        "publisher": {
+          "@type": "Organization", "name": site.name, "url": site.domain,
+          "logo": { "@type": "ImageObject", "url": `${site.domain}/favicon.svg` }
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Start", "item": `${site.domain}/` },
+          { "@type": "ListItem", "position": 2, "name": anlassLabel, "item": `${site.domain}/anlass/${a.anlass}` },
+          { "@type": "ListItem", "position": 3, "name": a.title, "item": pageUrl }
+        ]
+      },
+      {
+        "@type": "ItemList",
+        "name": a.title,
+        "numberOfItems": a.items.length,
+        "itemListElement": a.items.map((it, i) => ({
+          "@type": "ListItem", "position": i + 1, "name": it.name
+        }))
+      }
+    ]
   };
 
   write(`geschenke/${a.slug}.html`, layout({
@@ -117,9 +169,11 @@ for (const a of artikel) {
     desc: a.teaser,
     canonical: `/geschenke/${a.slug}`,
     jsonld,
+    ogImage: a.image,
     body: `<h1>${esc(a.title)}</h1>
     <p class="teaser">${esc(a.teaser)}</p>
     <p class="meta">Anlass: <a href="/anlass/${a.anlass}">${esc(anlassLabel)}</a> · Budget: <a href="/budget/${a.budget}">${esc(budgetLabel)}</a> · Stand: ${esc(a.date)}</p>
+    ${a.image ? `<img class="hero-img" src="${a.image}" alt="${esc(a.image_alt || a.title)}">` : ""}
     <p class="disclosure"><strong>Werbung</strong> · ${esc(site.disclosure.replace("Werbung · ", ""))}</p>
     <p>${esc(a.intro)}</p>
     ${items}
@@ -217,9 +271,15 @@ ${artikel.map(a => `<item>
 </item>`).join("\n")}
 </channel></rss>`);
 
-/* Statische Assets kopieren */
-for (const f of fs.readdirSync(path.join(ROOT, "static"))) {
-  fs.copyFileSync(path.join(ROOT, "static", f), path.join(OUT, f));
+/* Statische Assets kopieren (rekursiv) */
+function copyDir(src, dst) {
+  fs.mkdirSync(dst, { recursive: true });
+  for (const e of fs.readdirSync(src, { withFileTypes: true })) {
+    const s = path.join(src, e.name), d = path.join(dst, e.name);
+    if (e.isDirectory()) copyDir(s, d);
+    else fs.copyFileSync(s, d);
+  }
 }
+copyDir(path.join(ROOT, "static"), OUT);
 
 console.log(`Build ok: ${artikel.length} Artikel, ${urls.length} URLs`);
