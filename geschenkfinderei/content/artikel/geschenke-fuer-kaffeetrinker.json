@@ -1,0 +1,65 @@
+{
+  "slug": "geschenke-fuer-kaffeetrinker",
+  "title": "Geschenke für Kaffeetrinker: 8 Ideen jenseits der Bohnenpackung",
+  "teaser": "Kaffeetrinker haben schon eine Lieblingstasse. Acht Geschenkideen, die trotzdem ankommen, von der Handmühle bis zur Kaffeewaage.",
+  "date": "2026-07-06",
+  "image": "/artikel/geschenke-fuer-kaffeetrinker.jpg",
+  "image_alt": "Geschenkarrangement für Kaffeetrinker mit Handmühle, Handfilter und Tassen auf Cremeleinen",
+  "anlass": "geburtstag",
+  "fuer": "alle",
+  "budget": "30",
+  "intro": "Jemandem etwas zu schenken, der seinen Kaffee ernster nimmt als manche Beziehung, ist heikel: Die Bohnen sucht er sich selbst aus. Zum Glück gibt es rund um die Tasse genug Zubehör, das den Morgen besser macht, ohne dem Ritual reinzureden.",
+  "items": [
+    {
+      "name": "Manuelle Kaffeemühle mit Keramikmahlwerk",
+      "desc": "Frisch gemahlen schlägt vorgemahlen, jeden Tag. Auf ein Keramik- oder Stahlmahlwerk mit einstellbarem Mahlgrad achten, billige Schlagmesser zerhacken die Bohnen nur.",
+      "preis": "ca. 25–45 €",
+      "url": "https://www.amazon.de/s?k=handkaffeem%C3%BChle+keramikmahlwerk"
+    },
+    {
+      "name": "Handfilter-Set mit Glaskanne",
+      "desc": "Pour-Over ist das Ritual für Leute, die den Kaffee zelebrieren statt nur trinken. Ein Set mit Kanne und Porzellanfilter reicht für den Einstieg völlig.",
+      "preis": "ca. 20–35 €",
+      "url": "https://www.amazon.de/s?k=handfilter+kaffee+set+glaskanne"
+    },
+    {
+      "name": "Cold-Brew-Kaffeebereiter",
+      "desc": "Kalt gebrühter Kaffee ist mild, stark und im Sommer die bessere Eistee-Alternative. Modelle mit feinem Dauerfilter sparen den Papierkram.",
+      "preis": "ca. 20–35 €",
+      "url": "https://www.amazon.de/s?k=cold+brew+kaffeebereiter"
+    },
+    {
+      "name": "Espressokocher aus Edelstahl",
+      "desc": "Der Klassiker für den Herd, unverwüstlich und ohne Strom. Wer einen Induktionsherd hat, braucht zwingend die Edelstahl-Variante, Aluminium funktioniert dort nicht.",
+      "preis": "ca. 25–40 €",
+      "url": "https://www.amazon.de/s?k=espressokocher+edelstahl+induktion"
+    },
+    {
+      "name": "Doppelwandige Thermogläser",
+      "desc": "Sehen nach Café aus und halten den Kaffee länger warm, ohne die Finger zu verbrennen. Auf Borosilikatglas achten, das übersteht auch die Spülmaschine.",
+      "preis": "ca. 15–25 €",
+      "url": "https://www.amazon.de/s?k=doppelwandige+gl%C3%A4ser+kaffee+borosilikat"
+    },
+    {
+      "name": "Kaffee-Probierset aus verschiedenen Ländern",
+      "desc": "Vier bis sechs kleine Packungen statt einer großen: So probiert sich der Beschenkte einmal um die Welt. Sets mit ganzen Bohnen wirken hochwertiger als gemahlene.",
+      "preis": "ca. 20–35 €",
+      "url": "https://www.amazon.de/s?k=kaffee+probierset+ganze+bohnen+geschenk"
+    },
+    {
+      "name": "Digitale Kaffeewaage mit Timer",
+      "desc": "Klingt nerdig, ist aber der Unterschied zwischen Zufall und reproduzierbar gutem Kaffee. Eine Waage mit 0,1-Gramm-Auflösung und Timer deckt alle Brühmethoden ab.",
+      "preis": "ca. 15–30 €",
+      "url": "https://www.amazon.de/s?k=kaffeewaage+mit+timer"
+    },
+    {
+      "name": "Personalisierte Emaille-Tasse",
+      "desc": "Die Ausnahme von der Tassen-Regel: Mit Namen oder Spruch graviert wird sie zum Begleiter für Balkon, Büro und Campingkocher. Emaille verzeiht auch den Sturz vom Tisch.",
+      "preis": "ca. 15–25 €",
+      "url": "https://www.amazon.de/s?k=emaille+tasse+personalisiert"
+    }
+  ],
+  "pin": {
+    "keywords": ["geschenke für kaffeetrinker", "kaffee geschenkideen", "geschenkideen geburtstag"]
+  }
+}
