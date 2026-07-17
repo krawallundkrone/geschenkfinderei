@@ -1,0 +1,65 @@
+{
+  "slug": "geschenke-fuer-wanderer",
+  "title": "Geschenke für Wanderer: 8 Ideen, die im Rucksack landen",
+  "teaser": "Acht Geschenkideen für Wanderer, die wirklich mit auf Tour gehen: von Merinosocken bis Stirnlampe, sortiert nach Budget.",
+  "date": "2026-07-17",
+  "anlass": "geburtstag",
+  "fuer": "alle",
+  "budget": "50",
+  "image": "/artikel/geschenke-fuer-wanderer.jpg",
+  "image_alt": "Stillleben mit Wanderstiefeln, aufgerollten Wollsocken, Thermosflasche, gefalteter Wanderkarte und in Kraftpapier eingepacktem Geschenk mit Terracotta-Band auf Holzbank",
+  "intro": "Wanderschuhe und Jacken kannst du nicht verschenken, ohne Passform und Geschmack zu treffen, und Deko mit Bergmotiv bleibt zuhause im Regal. Was bleibt, ist das leichte Zubehör, das auf jeder Tour im Rucksack liegt und regelmäßig ersetzt oder ergänzt werden will. Acht Ideen, die sich beim nächsten Aufstieg beweisen dürfen.",
+  "items": [
+    {
+      "name": "Merino-Wandersocken",
+      "desc": "Gute Socken sind beim Wandern wichtiger als die halbe restliche Ausrüstung, trotzdem spart hier fast jeder. Merinowolle wärmt feucht weiter und riecht kaum, achte auf verstärkte Ferse und flache Zehennaht gegen Druckstellen.",
+      "preis": "ca. 15–25 €",
+      "url": "https://www.amazon.de/s?k=merino+wandersocken+damen+herren"
+    },
+    {
+      "name": "Multifunktionstuch aus Merinowolle",
+      "desc": "Schlauchtuch, Mütze, Stirnband und Schweißfänger in einem, dabei kaum 50 Gramm schwer. Die Merino-Variante trägt sich angenehmer als Synthetik und riecht auch nach drei Tourentagen nicht streng.",
+      "preis": "ca. 15–30 €",
+      "url": "https://www.amazon.de/s?k=multifunktionstuch+merino+schlauchtuch"
+    },
+    {
+      "name": "Isoliertes Sitzkissen",
+      "desc": "Die Brotzeit auf kaltem Fels oder feuchter Wiese ist der Klassiker jeder Tour. Ein faltbares, isoliertes Sitzkissen wiegt um die 100 Gramm, hängt außen am Rucksack und wird ab der ersten Rast nie wieder hergegeben.",
+      "preis": "ca. 10–20 €",
+      "url": "https://www.amazon.de/s?k=sitzkissen+faltbar+isoliert+outdoor"
+    },
+    {
+      "name": "Wiederaufladbare Stirnlampe",
+      "desc": "Für Sonnenaufgangstouren und den Abstieg, der doch länger dauert als geplant. Achte auf USB-C-Ladung, Rotlichtmodus und mindestens 300 Lumen, mehr Gewicht als 100 Gramm muss am Kopf nicht sein.",
+      "preis": "ca. 20–40 €",
+      "url": "https://www.amazon.de/s?k=stirnlampe+usb+c+wiederaufladbar+300+lumen"
+    },
+    {
+      "name": "Faltbare Trinkflasche",
+      "desc": "Leer gerollt verschwindet sie in der Seitentasche, gefüllt ergänzt sie die Wasserreserve an heißen Tagen. Achte auf BPA-freies Material und eine weite Öffnung, die sich am Brunnen ohne Trichter befüllen lässt.",
+      "preis": "ca. 10–20 €",
+      "url": "https://www.amazon.de/s?k=faltbare+trinkflasche+outdoor+bpa+frei"
+    },
+    {
+      "name": "Kompaktes Erste-Hilfe-Set mit Blasenpflaster",
+      "desc": "Kein glamouröses Geschenk, aber das mit dem größten Dankbarkeitspotenzial ab Kilometer zwölf. Fertige Outdoor-Sets wiegen unter 200 Gramm, prüfe, ob Blasenpflaster und Zeckenkarte enthalten sind, sonst nachlegen.",
+      "preis": "ca. 15–25 €",
+      "url": "https://www.amazon.de/s?k=erste+hilfe+set+wandern+blasenpflaster"
+    },
+    {
+      "name": "Leichte Powerbank mit 10.000 mAh",
+      "desc": "Navigation per Handy leert den Akku auf Tagestouren zuverlässig. Eine Powerbank um 200 Gramm lädt das Telefon zweimal voll, achte auf USB-C Power Delivery, damit es unterwegs schnell geht.",
+      "preis": "ca. 20–35 €",
+      "url": "https://www.amazon.de/s?k=powerbank+10000mah+leicht+usb+c"
+    },
+    {
+      "name": "Tourenbuch zum Eintragen",
+      "desc": "Ein Logbuch für Gipfel, Etappen und Hüttenabende macht aus abgehakten Touren eine kleine Sammlung. Varianten mit vorgedruckten Feldern für Route, Höhenmeter und Wetter erleichtern das Durchhalten, gebundene Ausgaben halten Rucksackjahre aus.",
+      "preis": "ca. 10–20 €",
+      "url": "https://www.amazon.de/s?k=tourenbuch+wandern+eintragen"
+    }
+  ],
+  "pin": {
+    "keywords": ["geschenke für wanderer", "wandern geschenkideen", "geschenke für outdoor fans"]
+  }
+}
