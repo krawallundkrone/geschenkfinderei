@@ -1,0 +1,65 @@
+{
+  "slug": "geschenke-fuer-radfahrer",
+  "title": "Geschenke für Radfahrer: 8 Ideen, die im Sattel ankommen",
+  "teaser": "Radfahrer haben die Ausrüstung längst? Nicht die Dinge, die man sich selten selbst gönnt. 8 Geschenkideen von Multitool bis Merino.",
+  "date": "2026-07-20",
+  "anlass": "geburtstag",
+  "fuer": "alle",
+  "budget": "30",
+  "image": "/artikel/geschenke-fuer-radfahrer.jpg",
+  "image_alt": "Flatlay mit Fahrrad-Multitool, isolierter Trinkflasche, Merinosocken, Minipumpe und in Kraftpapier verpacktem Geschenk mit Terracotta-Schleife auf cremefarbenem Leinen",
+  "intro": "Wer viel Rad fährt, hat Rad und Helm längst, und bei Komponenten schenkt man besser nicht ins Blaue. Die guten Geschenke liegen daneben: Dinge, die jede Tour angenehmer machen, aber auf der eigenen Einkaufsliste immer nach hinten rutschen. Acht Ideen, die genau da ansetzen.",
+  "items": [
+    {
+      "name": "Fahrrad-Multitool",
+      "desc": "Ein kompaktes Multitool mit Innensechskant-Bits und Kettennieter gehört in jede Trikottasche und geht trotzdem erstaunlich oft verloren oder fehlt ganz. Modelle mit 12 bis 16 Funktionen decken unterwegs fast alles ab.",
+      "preis": "ca. 15–35 €",
+      "url": "https://www.amazon.de/s?k=fahrrad+multitool+kettennieter"
+    },
+    {
+      "name": "Akku-Fahrradlicht-Set mit StVZO-Zulassung",
+      "desc": "Gute Beleuchtung wird gerade im Herbst zum Sicherheitsthema, und viele fahren mit müden Funzeln herum. Auf StVZO-Zulassung achten, sonst ist das Licht auf deutschen Straßen streng genommen nicht erlaubt.",
+      "preis": "ca. 20–50 €",
+      "url": "https://www.amazon.de/s?k=fahrradlicht+set+usb+stvzo"
+    },
+    {
+      "name": "Wasserdichte Satteltasche",
+      "desc": "Eine wasserdichte Satteltasche nimmt Schlauch, Multitool und Riegel auf und bleibt auch im Regenschauer dicht. Rollverschluss ist haltbarer als Reißverschluss, das lohnt den kleinen Aufpreis.",
+      "preis": "ca. 15–40 €",
+      "url": "https://www.amazon.de/s?k=satteltasche+fahrrad+wasserdicht"
+    },
+    {
+      "name": "Kettenpflege-Set",
+      "desc": "Kettenreiniger, Bürste und gutes Kettenöl sind der Klassiker unter den Dingen, die man ständig braucht und nie verschenkt bekommt. Sets mit Reinigungsgerät zum Durchkurbeln sparen die halbe Arbeit.",
+      "preis": "ca. 15–30 €",
+      "url": "https://www.amazon.de/s?k=fahrrad+kettenreinigungsset+kettenoel"
+    },
+    {
+      "name": "Handyhalterung für den Lenker",
+      "desc": "Navigation am Lenker statt in der Trikottasche macht unbekannte Strecken deutlich entspannter. Halterungen mit Schnellverschluss-System sind im Alltag praktischer als verschraubte Hüllenlösungen.",
+      "preis": "ca. 15–30 €",
+      "url": "https://www.amazon.de/s?k=handyhalterung+fahrrad+lenker"
+    },
+    {
+      "name": "Isolierte Fahrrad-Trinkflasche",
+      "desc": "Eine isolierte Flasche hält das Wasser auch nach zwei Stunden Sommertour kühl und schmeckt nicht nach Plastik. Auf Halterkompatibilität achten: 500 bis 650 Milliliter passen in jeden Standard-Flaschenhalter.",
+      "preis": "ca. 12–25 €",
+      "url": "https://www.amazon.de/s?k=fahrrad+trinkflasche+isoliert"
+    },
+    {
+      "name": "Merino-Radsocken",
+      "desc": "Merinosocken wärmen im Herbst, kühlen im Sommer und riechen auch nach langen Touren nicht streng. Socken sind bei Größen verzeihlich, damit umgehst du das übliche Kleidergrößen-Risiko beim Schenken.",
+      "preis": "ca. 12–20 €",
+      "url": "https://www.amazon.de/s?k=merino+socken+fahrrad"
+    },
+    {
+      "name": "Mini-Pumpe mit Manometer",
+      "desc": "Eine gute Minipumpe mit Druckanzeige rettet jede Tour und wiegt kaum etwas. Modelle mit Schlauchadapter schonen das Ventil, das ist der Unterschied zwischen Notlösung und Werkzeug.",
+      "preis": "ca. 15–30 €",
+      "url": "https://www.amazon.de/s?k=minipumpe+fahrrad+manometer"
+    }
+  ],
+  "pin": {
+    "keywords": ["geschenke für radfahrer", "geschenkideen fahrrad", "radfahrer geschenk"]
+  }
+}
